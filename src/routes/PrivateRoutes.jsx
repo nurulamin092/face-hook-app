@@ -6,10 +6,10 @@ const PrivateRoutes = () => {
   const { auth } = useAuth();
   return (
     <>
+      <Header />
       {auth.user ? (
         <main className="mx-auto max-w[1024px] py-8">
           <div className="container">
-            <Header />
             <Outlet />
           </div>
         </main>
