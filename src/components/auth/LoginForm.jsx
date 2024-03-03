@@ -1,17 +1,27 @@
 import React from "react";
+
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import Field from "../common/Field";
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const submitForm = (formData) => {
     console.log(formData);
+    // Make an API Call
+    // Will Return Tokens and Logged in user information
+
+    const user = { ...formData };
+    setAuth({ user });
     navigate("/");
   };
 
@@ -22,23 +32,23 @@ export default function LoginForm() {
     >
       <Field label="Email" error={errors.email}>
         <input
-          {...register("email", { required: "Email Id is required " })}
+          {...register("email", { required: "Email ID is Required" })}
           className={`auth-input ${
             !!errors.email ? "border-red-500" : "border-gray-200"
           }`}
           type="email"
           name="email"
           id="email"
-          placeholder="Please type your email"
         />
       </Field>
+
       <Field label="Password" error={errors.password}>
         <input
           {...register("password", {
-            required: "Password  is required ",
+            required: "Password is required",
             minLength: {
               value: 8,
-              message: "Your password must be at least 8 characters ",
+              message: "Your password must be at least 8 characters",
             },
           })}
           className={`auth-input ${
@@ -47,9 +57,9 @@ export default function LoginForm() {
           type="password"
           name="password"
           id="password"
-          placeholder="Please enter your password"
         />
       </Field>
+
       <Field>
         <button className="auth-input bg-lwsGreen font-bold text-deepDark transition-all hover:opacity-90">
           Login
