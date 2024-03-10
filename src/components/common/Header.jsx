@@ -35,7 +35,7 @@ export default function Header() {
               <Logout />
             </button>
 
-            <button className="flex-center !ml-8 gap-3">
+            <Link to="/me" className="flex-center !ml-8 gap-3">
               <span className="text-lg font-medium lg:text-xl">
                 {auth?.user?.firstName} {user?.lastName}
               </span>
@@ -44,7 +44,7 @@ export default function Header() {
                 src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`}
                 alt="avatar"
               />
-            </button>
+            </Link>
           </div>
         </div>
       </nav>
