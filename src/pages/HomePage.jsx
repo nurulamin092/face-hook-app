@@ -1,12 +1,12 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { actions } from "../actions";
-
-import { initialState, postReducer } from "../reducers/PostReducer";
-
 import useAxios from "../hooks/useAxios";
+import NewPost from "../posts/NewPost";
 import PostList from "../posts/PostList";
+import { usePost } from "../hooks/usePost";
 export default function HomePage() {
-  const [state, dispatch] = useReducer(postReducer, initialState);
+  const { state, dispatch } = usePost();
+
   const { api } = useAxios();
 
   useEffect(() => {
@@ -40,10 +40,12 @@ export default function HomePage() {
   }
 
   if (state?.error) {
-    return <div> Error in fetching posts {state?.error?.message}</div>;
+    return <div> Error in fatching posts {state?.error?.message}</div>;
   }
+
   return (
     <div>
+      <NewPost />
       <PostList posts={state?.posts} />
     </div>
   );

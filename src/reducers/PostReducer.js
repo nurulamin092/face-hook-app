@@ -1,7 +1,7 @@
 import { actions } from "../actions";
 
 const initialState = {
-    post: [],
+    posts: [],
     loading: false,
     error: null
 }
@@ -21,6 +21,20 @@ const postReducer = (state, action) => {
                 posts: action.data,
                 loading: false
 
+            }
+        }
+
+        case actions.post.DATA_CREATED: {
+            return {
+                ...state,
+                posts: [...state.posts, action.data]
+            }
+        }
+
+        case actions.post.POST_DELETED: {
+            return {
+                ...state,
+                posts: state.posts.filter(item => item.id !== action.data)
             }
         }
 

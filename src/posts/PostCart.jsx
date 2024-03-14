@@ -10,7 +10,7 @@ const PostCart = ({ post }) => {
       <article className="card mt-6 lg:mt-8">
         <PostHeader post={post} />
         <PostBody poster={post?.image} content={post?.content} />
-        <PostActions postId={post?.id} commentCount={post?.comment?.length} />
+        <PostActions post={post} commentCount={post?.comment?.length} />
         <PostComment post={post} />
       </article>
     </>
